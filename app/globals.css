@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  THEME — "Santa Monica Light"
+  Pulled from Dr. Reynolds' own office photos: slate-blue upholstery & sky (primary),
+  dusty blush from the wall art (secondary), honey oak flooring & afternoon sun (accent).
+  Values are space-separated RGB so Tailwind opacity modifiers (bg-primary/60) work.
+*/
+:root {
+  --paper: 249 246 242;          /* #F9F6F2 warm white page background */
+  --ink: 28 38 46;               /* #1C262E body text */
+  --primary: 52 73 90;           /* #34495A slate blue */
+  --primary-dark: 33 49 61;      /* #21313D deep slate */
+  --secondary: 239 228 224;      /* #EFE4E0 blush linen */
+  --secondary-deep: 226 208 202; /* #E2D0CA deeper blush */
+  --accent: 212 154 78;          /* #D49A4E honey oak */
+  --accent-deep: 138 87 24;      /* #8A5718 honey for text on light (AA) */
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body { @apply bg-paper font-sans text-ink antialiased; }
+  h1, h2, h3, h4 { @apply font-display text-primary-dark; font-optical-sizing: auto; }
+  em { @apply font-display italic; }
+  :focus-visible { outline: 2px solid rgb(var(--accent-deep)); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12; }
+  .section-y { @apply py-16 sm:py-20 lg:py-28; }
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-eyebrow text-accent-deep; }
+  .h-display { @apply font-display font-normal leading-[1.12] tracking-tight; }
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full bg-accent px-7 py-3.5 text-base font-semibold text-ink
+           transition-colors duration-200 hover:bg-primary hover:text-paper;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-full border border-primary px-7 py-3.5 text-base font-semibold text-primary
+           transition-colors duration-200 hover:bg-primary hover:text-paper;
+  }
+  .arch { border-top-left-radius: 999px; border-top-right-radius: 999px; }
+}
